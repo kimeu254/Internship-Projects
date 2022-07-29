@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS tutorial</title>
+</head>
+<body>
+    <p id="demo"></p>
+
+    <h1>Volume Tracker</h1>
+
+    <h3 id="vol"></h3>
+    <div>
+        <button onclick="volUp()">Volume Up</button>
+        <button onclick="volDown()">Volume Down</button>
+    </div>
+
+    <div class="outer">
+        <div class="inner">
+
+        </div>
+    </div>
+ <script>
+    //Functions and Objects
+    // Constructor function for Person objects
+function Person(first, last, age, eye) {
+    this.firstName = first;
+    this.lastName = last;
+    this.name = function() {
+      return this.firstName + " " + this.lastName
+    };
+  }
+  
+  // Create a Person object
+  const myFather = new Person("John", "Doe");
+  
+  // Display full name
+  document.getElementById("demo").innerHTML =
+  "My father is " + myFather.name();
+
+  //Onclick built-in event
+let vol = 0
+
+function volUp() {
+    vol += 1;
+    document.getElementById("vol").innerHTML=vol
+}
+
+function volDown() {
+    vol -= 1;
+    document.getElementById("vol").innerHTML=vol
+}
+
+   //Custom event
+const jimEvent = new Event("jimEvent",  {
+    detail: "This is a custom JimEvent",
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+})
+
+document.querySelector(".outer")
+.addEventListener("jimEvent", (event) => {
+    event.preventDefault();
+    console.log(event)
+})
+
+document.querySelector(".inner")
+.dispatchEvent(jimEvent)
+
+ </script>   
+</body>
+</html>
