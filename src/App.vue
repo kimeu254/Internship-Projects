@@ -1,18 +1,10 @@
 <template>
-<!-- Conditional rendering-->
-<h2 v-if="num === 0">The number is zero</h2>
-<h2 v-else-if="num > 0">The number is positive</h2>
-<h2 v-else-if="num < 0">The number is negative</h2>
-<h2 v-else>This is not a number</h2>
-<h2 v-show="display">Using v-show</h2>
-
-<!--- List rendering ----->
-<h2 v-for="(name, index) in fullNames" :key="name">{{ index }} {{ name.first }} {{ name.last }}</h2>
-
-<div v-for="actor in actors" :key="actor.name">
-<h2>{{ actor.name }}</h2>
-<h3 v-for="movie in actor.movies" :key="movie">{{ movie }}</h3>
-<h2 v-for="value in myInfo" :key="value">{{ value }}</h2>
+<h2>{{ name }}</h2>
+<button @click="changeName">Change Name</button>
+<h2>{{ count }}</h2>
+<div>
+  <button @click="increment(5, $event)">Increment</button>
+  <button @click="decrement(5)">Decrement</button>
 </div>
 </template>
 
@@ -25,32 +17,22 @@ export default {
   name: 'App',
   data () {
     return {
-     num: 0,
-     display: true,
-     fullNames: [
-      {first: 'Thomas', last: 'Shelby'},
-      {first: 'Polly', last: 'Grey'},
-      {first: 'Alfie', last: 'Solomons'},
-     ],
-     actors: [
-      {
-        name: 'Cillian Murphy',
-        movies: ['Peaky Blinders', 'Oppenheimer'],
-      },
-      {
-        name: 'Tom Welling',
-        movies: ['Lucifer', 'Smallvile'], 
-      },
-     ],
-     myInfo: {
       name: 'Jimmy',
-      channel: 'Madmunga',
-      course: 'Vue3'
-     }
+     count: 0,
     };
   },
   methods: {
-   
+   changeName(event) {
+    this.name = 'Madmunga'
+    console.log('Event', event)
+   },
+   increment(num, event) {
+    this.count += num
+    console.log('Event', event)
+   },
+   decrement(num) {
+    this.count -= num
+   }
   },
   computed: {
    
