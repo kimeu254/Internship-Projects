@@ -1,33 +1,37 @@
 <template>
 
-<button @click="showPopup = true">Show Popup</button>
-<Popup v-show="showPopup" @close="closePopup"/>  
+<button @click="activeTab = 'TabA'">Tab A</button>
+<button @click="activeTab = 'TabB'">Tab B</button>
+<button @click="activeTab = 'TabD'">Tab D</button>
 
+<keep-alive>
+<component :is="activeTab"/>
+</keep-alive>
 
 </template>
 
 <script>
-import Popup from './components/Popup.vue' 
+import TabA from './components/TabA.vue'
+import TabB from './components/TabB.vue'
+import TabD from './components/TabD.vue'
 
 export default {
   name: 'App',
   components: {
-    //Greet, 
-    //Article,
-    Popup,
-    //Input,
+    //Popup,
+    TabA,
+    TabB,
+    TabD,
+    
+    
   },
   data () {
     return {
-      showPopup: false,
-      
+      activeTab: 'TabA',
     }
   },
   methods: {
-    closePopup(name) {
-      this.showPopup = false
-      console.log('name', name)
-    }
+    
   }
 }
 </script>
@@ -37,7 +41,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*text-align: center;*/
+  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
